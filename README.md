@@ -1,6 +1,10 @@
 # Global Configs
 
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
+
 A flutter package to manage application configurations via singleton pattern.
+
+**Show some ❤️ and star the repo to support the project**
 
 ## Installation
 
