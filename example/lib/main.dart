@@ -10,7 +10,7 @@ void main() async {
   GlobalConfigs().loadFromMap(configs.dev);
 
   // Load configs from json
-  await GlobalConfigs().loadJsonFromPath('configs/dev.json');
+  await GlobalConfigs().loadJsonFromdir('configs/dev.json');
 
   print(GlobalConfigs().get('config1'));
 

@@ -15,9 +15,9 @@ void main() {
       expect(GlobalConfigs().configs['a'], 1);
     });
 
-    test('from Map to key', () {
+    test('from Map to path', () {
       GlobalConfigs().clear();
-      GlobalConfigs().loadFromMap(map, key: 'c');
+      GlobalConfigs().loadFromMap(map, path: 'c');
       expect(GlobalConfigs().configs['c']['a'], 1);
     });
   });
