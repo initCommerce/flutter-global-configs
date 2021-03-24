@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0] - [2021-03-24].
 
-* TODO: Describe initial release.
+* First virsion of `GlobalConfigs`.
