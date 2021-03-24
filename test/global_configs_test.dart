@@ -3,6 +3,25 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:global_configs/global_configs.dart';
 
 void main() {
+  group('Load config', () {
+    Map<String, dynamic> map = {
+      'a': 1,
+      'b': {'c': 2}
+    };
+
+    test('from Map', () {
+      GlobalConfigs().clear();
+      GlobalConfigs().loadFromMap(map);
+      expect(GlobalConfigs().configs['a'], 1);
+    });
+
+    test('from Map to key', () {
+      GlobalConfigs().clear();
+      GlobalConfigs().loadFromMap(map, key: 'c');
+      expect(GlobalConfigs().configs['c']['a'], 1);
+    });
+  });
+
   group('Read value', () {
     GlobalConfigs().clear();
     GlobalConfigs().loadFromMap({
