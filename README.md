@@ -1,5 +1,7 @@
 # Global Configs
 
+![gc-logo](https://user-images.githubusercontent.com/8446770/113515900-825c9e00-958c-11eb-9252-9f1a0c66b2ea.png)
+
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
 
 A flutter package to manage application configurations via singleton pattern.

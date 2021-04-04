@@ -1,3 +1,7 @@
+## 1.1.0+1
+
+* Add logo to readme file
+
 ## 1.1.0
 
 * Use `Gato` lib
