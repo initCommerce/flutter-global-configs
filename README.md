@@ -155,7 +155,7 @@ Map<String, dynamic> configs = {
 // Load configs from map
 GlobalConfigs().loadFromMap(configs.dev);
 
-var defaultTheme = GlobalConfigs().set('appearance.defaultTheme', 'Light'); // Light
+GlobalConfigs().set('appearance.defaultTheme', 'Light'); // Light
 ```
 
 ### Unset configuration
