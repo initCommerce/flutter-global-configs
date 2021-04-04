@@ -67,13 +67,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gato:
+    dependency: transitive
+    description:
+      name: gato
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   global_configs:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "1.0.0+2"
+    version: "1.1.0"
   matcher:
     dependency: transitive
     description:

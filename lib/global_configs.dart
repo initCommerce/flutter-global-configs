@@ -3,6 +3,7 @@ library global_configs;
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:gato/gato.dart' as gato;
 
 /// A singleton class to set and get global configs.
 ///
@@ -53,6 +54,8 @@ class GlobalConfigs {
   ///
   /// Use [path] to access to a specific key
   ///
+  /// Use [convertor] to cast the valeu to your custom type
+  ///
   /// ```dart
   /// Map<String, dynamic> map = { 'a': 1, 'b': {'c': 2}};
   /// GlobalConfigs.loadFromMap(map);
@@ -60,17 +63,8 @@ class GlobalConfigs {
   /// GlobalConfigs().get('a'); // 1
   /// GlobalConfigs().get('b.c'); // 2
   /// ```dart
-  T get<T>(String path) => _baseGet(configs, path);
-
-  T _baseGet<T>(map, String path) {
-    List<String> keys = path.split('.');
-
-    if (keys.length == 1) {
-      return map[keys.removeAt(0)];
-    }
-
-    return _baseGet(map[keys.removeAt(0)], keys.join('.'));
-  }
+  T get<T>(String path, {T Function(dynamic)? converter}) =>
+      gato.get(configs, path, converter: converter);
 
   /// Sets new data to the configs
   ///
@@ -85,23 +79,8 @@ class GlobalConfigs {
   /// GlobalConfigs().set('a', 3); // { 'a': 3, 'b': {'c': 2}}
   /// GlobalConfigs().set('b.d', 4); // { 'a': 3, 'b': {'c': 2, 'd': 4}}
   /// ```dart
-  void set<T>(String path, T value) => configs = _baseSet(configs, path, value);
-
-  Map<String, dynamic> _baseSet<T>(map, String path, value) {
-    List<String> keys = path.split('.');
-
-    if (keys.length == 1) {
-      return {
-        ...(map is Map ? map : {}),
-        keys[0]: value as T,
-      };
-    }
-
-    return {
-      ...(map is Map ? map : {}),
-      keys[0]: _baseSet(map[keys.removeAt(0)], keys.join('.'), value),
-    };
-  }
+  void set<T>(String path, T value) =>
+      configs = gato.set<T>(configs, path, value);
 
   /// Removes data to the configs
   ///
@@ -113,22 +92,7 @@ class GlobalConfigs {
   ///
   /// GlobalConfigs().unset('b'); // { 'a': 3}
   /// ```dart
-  void unset(String path) => configs = _baseUnset(configs, path);
-
-  Map<String, dynamic> _baseUnset(map, String path) {
-    List<String> keys = path.split('.');
-
-    if (keys.length == 1) {
-      map.remove(keys.removeAt(0));
-
-      return map;
-    }
-
-    return {
-      ...(map is Map ? map : {}),
-      keys[0]: _baseUnset(map[keys.removeAt(0)], keys.join('.')),
-    };
-  }
+  void unset(String path) => configs = gato.unset(configs, path);
 
   /// Clear the current configs
   void clear() => configs.clear();

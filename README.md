@@ -98,13 +98,25 @@ await GlobalConfigs().loadJsonFromdir('configs/dev.json', path: 'appearance.them
 
 ### Get configuration
 After loading configurations use `get` function to simply access to a configuration.
-You can use `.` notation to access to a nested configuration.
+```dart
+T get<T>(String path, {T Function(dynamic)? converter})
+```
 
+**Arguments**
+
+- path *(`String`)*: The path of the config to get.
+- converter *(`T Function(dynamic)?`)*: The function to cast the value to a custom type
+
+**Returns**
+
+- *`<T>|null`*: Returns the resolved value or `null` if the config is not found.
+
+**Example**
 ```dart
 Map<String, dynamic> configs = {
   'appearance': {
     'defaultTheme': 'Dark',
-    'color': 'red',
+    'color': '0xFFB74093',
   },
   'size': 100,
 };
@@ -114,11 +126,23 @@ GlobalConfigs().loadFromMap(configs.dev);
 
 var size = GlobalConfigs().get('size'); // 100
 var defaultTheme = GlobalConfigs().get('appearance.defaultTheme'); // Dark
+Color color = GlobalConfigs().get<Color>(
+  'appearance.color',
+  converter: (value) => Color(int.parse(value)),
+);
 ```
 
 ### Set configuration
-Use `set` function to update or add a new configuration, You can use `.` notation to access to a nested configuration.
+Use `set` function to update or add a new configuration.
+```dart
+void set<T>(String path, T value)
+```
+**Arguments**
 
+- path *(`String`)*: The path of the config to set.
+- value *(`T`)*: The value to set.
+
+**Example**
 ```dart
 Map<String, dynamic> configs = {
   'appearance': {
@@ -135,8 +159,17 @@ var defaultTheme = GlobalConfigs().set('appearance.defaultTheme', 'Light'); // L
 ```
 
 ### Unset configuration
-Use `unset` function to remove a configuration, , You can use `.` notation to access to a nested configuration.
+Use `unset` function to remove a configuration.
+```dart
+void unset(String path)
+```
 
+**Arguments**
+
+- path *(`String`)*: The path of the property to remove.
+
+
+**Example**
 ```dart
 Map<String, dynamic> configs = {
   'appearance': {
@@ -155,26 +188,3 @@ var defaultTheme = GlobalConfigs().unset('appearance.defaultTheme'); // {'appear
 
 **For more information see [examples](https://github.com/mehdizarepour/flutter-global-configs/blob/master/example/lib/main.dart)**
 
-# MIT License
-
-```
-Copyright (c) 2021 Mehdi Zarepour
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
