@@ -1,3 +1,7 @@
+## 1.1.1
+
+* Upgrade `Gato` package
+
 ## 1.1.0+1
 
 * Add logo to readme file

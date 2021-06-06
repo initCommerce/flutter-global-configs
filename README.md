@@ -10,7 +10,7 @@ A flutter package to manage application configurations via singleton pattern.
 
 ## Installation
 
-Add `global_configs: ^1.0.0` to your `pubspec.yaml` dependencies. And import it:
+Add `global_configs: ^1.1.1` to your `pubspec.yaml` dependencies. And import it:
 
 ```dart
 import 'package:global_configs/global_configs.dart';
