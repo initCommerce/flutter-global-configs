@@ -50,7 +50,7 @@ void main() {
       GlobalConfigs().clear();
       GlobalConfigs().loadFromMap({'color': '0xFFB74093'});
 
-      Color color = GlobalConfigs().get<Color>(
+      Color? color = GlobalConfigs().get<Color>(
         'color',
         converter: (value) => Color(int.parse(value)),
       );

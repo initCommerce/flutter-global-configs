@@ -63,7 +63,7 @@ class GlobalConfigs {
   /// GlobalConfigs().get('a'); // 1
   /// GlobalConfigs().get('b.c'); // 2
   /// ```dart
-  T get<T>(String path, {T Function(dynamic)? converter}) =>
+  T? get<T>(String path, {T Function(dynamic)? converter}) =>
       gato.get(configs, path, converter: converter);
 
   /// Sets new data to the configs
