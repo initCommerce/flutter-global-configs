@@ -1,3 +1,7 @@
+## 1.1.2
+
+* Upgrade `Gato` package to `v0.0.5`
+
 ## 1.1.1
 
 * Upgrade `Gato` package
